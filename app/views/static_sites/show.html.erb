@@ -1,0 +1,60 @@
+<%
+#
+# https://www.epetition-unzensiert.de - Web-Application to publish censored petitions.
+# Copyright (C) 2013 Jan Kechel
+#  
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+%>
+
+<div class="bluelinks">
+<h1>CMS <%= @static_site.get_relative_url %></h1>
+
+<p>
+  <b>URL:</b>
+  <%= link_to @static_site.get_relative_url, "#{@static_site.get_relative_url}", :target => "_blank" %>
+</p>
+
+<h2>SEO-Tags</h2>
+
+<p>
+  <b>Title:</b>
+  <%= @static_site.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @static_site.description %>
+</p>
+
+<p>
+  <b>Keywords:</b>
+  <%= @static_site.keywords %>
+</p>
+
+<h2>HTML Source-Code</h2>
+<div class="html_source">
+  <pre>
+  <%= @static_site.html %>
+  </pre>
+</div>
+
+
+<%= link_to "&laquo; Übersicht".html_safe, static_sites_path, :class => 'button zurueck' %>
+<%= link_to 'Bearbeiten', edit_static_site_path(@static_site), :class => 'button bearbeiten' %>
+<hr/>
+</div>
+<h2>HTML-Vorschau</h2>
+<%= @static_site.html.html_safe %>
+<hr/>

@@ -1,0 +1,32 @@
+development:
+  adapter: postgresql
+  database: epetition-unzensiert-dev
+  encoding: utf8
+  username: jan
+  password: ***
+  pool: 5
+  timeout: 5000
+
+test: &test
+  adapter: postgresql
+  database: epetition-unzensiert-test
+  encoding: utf8
+  username: jan
+  password: ***
+  pool: 5
+  timeout: 5000
+
+
+production:
+  adapter: postgresql
+  database: epetition-unzensiert-production
+  encoding: utf8
+  username: jan
+  password: ***
+  pool: 5
+  timeout: 5000
+
+
+
+cucumber:
+  <<: *test

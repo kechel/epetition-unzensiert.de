@@ -1,0 +1,74 @@
+<%
+#
+# https://www.epetition-unzensiert.de - Web-Application to publish censored petitions.
+# Copyright (C) 2013 Jan Kechel
+#  
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+%>
+
+<h1>Petition: <%= @petition.titel %></h1>
+<span class="petitionstext" style="width:890px;"><%= newline2br @petition.inhalt %></span>
+<br/>
+<br/>
+<% if !@meine_meinung || (!@meine_meinung.bin_unterstuetzer && !@meine_meinung.bin_dagegen) %>
+  <span class="keine_meinung">Ich habe bisher keine Meinung zu dieser Petition.</span><br/>
+<% end %>
+
+<% if @meine_meinung %>
+  <% if @meine_meinung.bin_unterstuetzer %>
+    <span class="unterstuetzer">Ich unterstütze diese Petition.</span><br/>
+  <% end %>
+  <% if @meine_meinung.bin_dagegen %>
+    <span class="dagegen">Ich bin gegen diese Petition.</span><br/>
+  <% end %>
+  <% if @meine_meinung.ist_spam %>
+    <span class="spam">Ich halte diese Petition für SPAM.</span><br/>
+  <% end %>
+<% end %>
+<br/>
+<b>Meinung ändern:</b><br/>
+<br/>
+<% if !@meine_meinung || !@meine_meinung.bin_unterstuetzer %>
+  <%= link_to 'ich unterstütze diese Petition'.html_safe, bin_unterstuetzer_meinungen_path(@petition), :method => :patch, :class => 'button unterstuetzer', :style => 'width:280px;' %>
+<% else %>
+  <span style="display:inline-block;width:280px;padding-left:50px;padding-right:50px;margin-left:20px;margin-right:20px;"></span>
+<% end %>
+<% if !@meine_meinung || !@meine_meinung.bin_dagegen %>
+  <%= link_to 'ich bin gegen diese Petition'.html_safe, bin_dagegen_meinungen_path(@petition), :method => :patch, :class => 'button dagegen', :style => 'width:280px;' %>
+<% else %>
+  <span style="display:inline-block;width:280px;padding-left:50px;padding-right:50px;margin-left:20px;margin-right:20px;"></span>
+<% end %>
+<% if @meine_meinung && (@meine_meinung.bin_dagegen || @meine_meinung.bin_unterstuetzer) %>
+  <%= link_to 'ich habe keine Meinung'.html_safe, habe_keine_meinung_meinungen_path(@petition), :method => :patch, :class => 'button spam', :style => 'width:280px;' %>
+<% else %>
+  <span style="display:inline-block;width:280px;padding-left:50px;padding-right:50px;margin-left:20px;margin-right:20px;"></span>
+<% end %>
+<% if !@meine_meinung || !@meine_meinung.ist_spam %>
+  <%= link_to 'diese Petition ist SPAM'.html_safe, ist_spam_meinungen_path(@petition), :method => :patch, :class => 'button spam', :style => 'width:280px;' %>
+<% else %>
+  <%= link_to 'diese Petition ist kein SPAM'.html_safe, ist_kein_spam_meinungen_path(@petition), :method => :patch, :class => 'button spam', :style => 'width:280px;' %>
+<% end %>
+<hr/>
+<br/>
+<%= link_to '&laquo; zurück zu alle Petitionen'.html_safe, browser_index_path %>
+
+<% if current_user %>
+  <%= link_to '&laquo; zurück zu meine Meinungen'.html_safe, user_meinungen_path(current_user) %>
+  <% if current_user.is_admin %>
+    <%= link_to 'Benutzer anzeigen', user_path(@petition.user) %>
+    <%= link_to 'Petition anzeigen', user_petition_path(@petition.user, @petition) %>
+  <% end %>
+<% end %>
+

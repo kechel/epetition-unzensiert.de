@@ -1,0 +1,48 @@
+<%
+#
+# https://www.epetition-unzensiert.de - Web-Application to publish censored petitions.
+# Copyright (C) 2013 Jan Kechel
+#  
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+%>
+
+<div class="bluelinks-normal">
+<h1>CMS-Seiten Übersicht</h1>
+
+<table class="tdtopline highlightonhover bluelinks-normal">
+  <tr>
+    <th>URL</th>
+    <th>Title</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @static_sites.each do |static_site| %>
+  <tr>
+    <td><%= link_to static_site.get_relative_url, static_site.get_relative_url %></td>
+    <td><%= static_site.title %></td>
+    <td><%= link_to 'Anzeigen', static_site_path(static_site) %></td>
+    <td><%= link_to 'Bearbeiten', edit_static_site_path(static_site) %></td>
+    <td><%= link_to 'Löschen', static_site_path(static_site), :method => :delete, :data => { :confirm => 'Sicher?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br /><br />
+</div>
+<div class="bluelinks">
+  <%= link_to 'Neue CMS-Seite erstellen', new_static_site_path, :class => 'button neu' %>
+</div>

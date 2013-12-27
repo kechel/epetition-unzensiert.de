@@ -1,0 +1,66 @@
+<%
+#
+# https://www.epetition-unzensiert.de - Web-Application to publish censored petitions.
+# Copyright (C) 2013 Jan Kechel
+#  
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+%>
+
+<h1>Petition <%= @petition.titel %> von <%= @foruser.email %></h1>
+
+  <span class="stdlabel200">Datum erstellt:</span> <%= datetime_format @petition.datum_erstellt %> <br/>
+  <span class="stdlabel200">Datum zuletzt bearbeitet:</span> <%= datetime_format @petition.datum_zuletzt_bearbeitet %> <br/>
+  <span class="stdlabel200">Datum veröffentlicht:</span> <%= datetime_format @petition.datum_veroeffentlicht %> <br/>
+  <br/>
+  <span class="stdlabel200">Titel:</span> <span class="petitionstitel"><%= @petition.titel %></span><br/>
+  <br/>
+  <span class="stdlabel200">Inhalt:</span> <span class="petitionstext"><%= newline2br @petition.inhalt %></span><br/>
+  <br/>
+
+
+  <span class="stdlabel200">Ist effektiv zensiert:</span> <%= @petition.ist_zensiert ? 'Ja' : 'Nein' %> <i>* z.B. wegen Regelverstoss, SPAM oder rechtlichen Bedenken am Inhalt.</i><br/>
+  <span class="stdlabel200">Ist von Admin zensiert:</span> <%= @petition.ist_zensiert_von_admin ? 'Ja' : 'Nein' %> <br/>
+<% if @petition.datum_zensiert %>
+  <span class="stdlabel200">Datum zensiert:</span> <%= datetime_format @petition.datum_zensiert %> <br/>
+<% end %>
+<% if @petition.datum_entzensiert %>
+  <span class="stdlabel200">Datum entzensiert:</span> <%= datetime_format @petition.datum_entzensiert %> <br/>
+<% end %>
+
+<br/>
+
+  <span class="stdlabel200">Anzahl Unterstützer:</span> <%= @petition.get_anzahl_unterstuetzer %> <br/>
+  <span class="stdlabel200">Anzahl Gegner:</span> <%= @petition.get_anzahl_dagegen %> <br/>
+  <span class="stdlabel200">Anzahl SPAM:</span> <%= @petition.get_anzahl_spam %> <br/>
+  <br/>
+
+<%= link_to 'Meine Petitionen', user_petitionen_path(@foruser), :class => 'button zurueck' %>
+<% if !@petition.datum_veroeffentlicht %>
+<%= link_to 'Bearbeiten', edit_user_petition_path(@foruser, @petition), :class => 'button bearbeiten' %>
+<%= link_to 'Jetzt veröffentlichen', user_petition_jetzt_veroeffentlichen_path(@foruser, @petition), :method => :patch, :class => 'button bestaetigen' %>
+<% else %>
+  <i>* Diese Petition wurde bereits veröffentlicht und kann nicht mehr bearbeitet werden.</i>
+<% end %>
+<% if current_user && current_user.is_admin %>
+  <% if @petition.ist_zensiert && !@petition.datum_entzensiert %>
+    <%= link_to 'Entzensieren', user_petition_entzensieren_path(@foruser, @petition), :method => :patch, :class => 'button' %>
+  <% end %>
+  <% if !@petition.ist_zensiert_von_admin %>
+    <%= link_to 'Admin-Zensur', user_petition_admin_zensieren_path(@foruser, @petition), :method => :patch, :class => 'button' %>
+  <% else %>
+    <%= link_to 'keine Admin-Zensur', user_petition_nicht_admin_zensieren_path(@foruser, @petition), :method => :patch, :class => 'button' %>
+  <% end %>
+
+<% end %>

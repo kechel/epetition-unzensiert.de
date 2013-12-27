@@ -1,0 +1,74 @@
+<%
+#
+# https://www.epetition-unzensiert.de - Web-Application to publish censored petitions.
+# Copyright (C) 2013 Jan Kechel
+#  
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+%>
+
+<div style="clear:right; float:right; text-align:right;">
+<%= form_tag browser_index_path, :method => :get do %>
+<%
+ auswahl = {
+    'Veröffentlichungs-Datum älteste zuerst' => 'veroeffentlichung', 'Veröffentlichungs-Datum neueste zuerst' => 'veroeffentlichung_desc',
+    'Anzahl Unterstützer aufsteigend' => 'unterstuetzer', 'Anzahl Unterstützer absteigend' => 'unterstuetzer_desc',
+    'Anzahl Gegner aufsteigend' => 'dagegen', 'Anzahl Gegner absteigend' => 'dagegen_desc',
+    'Anzahl SPAM aufsteigend' => 'spam', 'Anzahl SPAM absteigend' => 'spam_desc',
+    'Alphabetisch aufsteigend' => 'alphabetisch', 'Alphabetisch absteigend' => 'alphabetisch_desc'
+  }
+  if current_user && current_user.is_admin 
+    auswahl['effektiv zensiert'] = 'effektiv_zensiert'
+    auswahl['entzensiert'] = 'entzensiert'
+    auswahl['von Admin zensiert'] = 'admin_zensiert'
+  end
+%>
+  Sortierung: <%= select_tag :sortierung, options_for_select(auswahl, @sortierung), :include_blank => true %>
+  <%= submit_tag 'Los' %>
+<% end %>
+<br/>
+<%= paginate @petitionen, :param_name => 'browser_page' %>
+</div>
+
+<h1><%= @petitionen.total_count %> Petitionen</h1>
+<ul style="clear:both;" class="highlightonhover trennlinien blocklinks">
+  <li>
+    <b>
+      <span style="display:inline-block;width:100px;">Erstellt</span>
+      <span style="display:inline-block;width:450px;">Titel</span>
+      <span style="display:inline-block;width:100px;text-align:center;">Unterstützer</span>
+      <span style="display:inline-block;width:100px;text-align:center;">Gegner</span>
+      <span style="display:inline-block;width:100px;text-align:center;">SPAM</span>
+    </b>
+  </li>
+
+  <% @petitionen.each do |p| %>
+    <% if p.id == session[:last_petition_id] %>
+      <li class="highlight">
+    <% else %>
+      <li>
+    <% end %>
+      <a href="<%= browser_show_path(p) %>">
+        <span style="display:inline-block;width:100px;"><%= date_format p.datum_veroeffentlicht %></span>
+        <span style="display:inline-block;width:450px;"><%= p.titel %></span>
+        <span style="display:inline-block;width:100px;text-align:center;"><%= p.get_anzahl_unterstuetzer %></span>
+        <span style="display:inline-block;width:100px;text-align:center;"><%= p.get_anzahl_dagegen %></span>
+        <span style="display:inline-block;width:100px;text-align:center;"><%= p.get_anzahl_spam %></span>
+      </a>
+    </li>
+  <% end %>
+</ul>
+<div style="float:right;">
+<%= paginate @petitionen, :param_name => 'browser_page' %>
+</div>

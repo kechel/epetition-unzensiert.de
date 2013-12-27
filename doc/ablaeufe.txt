@@ -1,0 +1,53 @@
+---------------------------------------------
+epetition-unzensiert
+---------------------------------------------
+1. Benutzer-Typen
+  - Admins
+    - duerfen zur Veroeffentlichung eingereichte Petitionen veroeffentlichen
+    - duerfen zur Veroeffentlichung eingereichte Petitionen 'zensieren' und 'entzensieren'
+      -> wenn eingereichte Texte offensichtlich 'Werbung', 'SPAM' oder 'illegal' sind.
+      -> verboten sind auch Namen, Telefonnummern, E-Mail Adressen, Web-Adressen / URLs, Postadressen und sonstige Informationen die konkrete Menschen oder Firmen bezeichnen.
+    - duerfen registrierte Benutzer sperren
+  - registrierte Benutzer
+    - duerfen neue Petitionen Erstellen / Formulieren / als Entwurf speichern
+    - duerfen eigene Petitionen zur Veroeffentlichung 'einreichen'
+    - duerfen sich bei fremden Petitionen als 'Unterstuetzer' eintragen
+  - unregistrierte Benutzer
+    - registrierung via email-authentication (devise), jeder darf sich registrieren wenn er eine email bestaetigen kann
+    - unregistrierte Benutzer koennen alle veroeffentlichten Petitionen lesen, sowie eine kurze Statistik
+      wieviele 'Unterstuetzer' es gibt (im Gegensatz zu 'Mitzeichnern', das gibt es bei uns nicht).
+
+2. Daten
+  - users
+    - email
+    - deaktiviert <- um accounts zu sperren
+  - petitionen
+    - user_id <- besitzer / ersteller
+    - datum_erstellt
+    - datum_zuletzt_bearbeitet
+    - datum_veroeffentlicht
+    - ist_zensiert <- passiert automatisch sobald genuegend 'ist_spam' meinungen eingegangen sind
+    - datum_zensiert <- kann von Admins gesetzt werden um auch nicht als spam markierte Petitionen zu zensieren 
+    - datum_entzensiert <- kann von Admins gesetzt werden um nur aus protest (dagegen) als 'spam' gemeldete Petitionen dauerhaft freizuschalten
+    - titel -> max. 255 zeichen
+    - inhalt -> text
+    - titel_zensiert -> admin kann den titel anpassen wenn er will, der dann in der 'zensierte petitionen liste' angezeigt wird
+    - inhalt_zensiert -> admin kann den inhalt anpassen, der dann auch in der 'zensierte petitionen liste' angezeigt wird, falls hier nichts eingetragen wurde, so wird der inhalt zensierter petitionen garnicht angezeigt
+    - anzahl_unterstuetzer_cached
+    - anzahl_dagegen_cached
+    - anzahl_spam_cached
+  - meinungen
+    - user_id
+    - petition_id
+    - datum
+    - bin_unterstuetzer
+    - bin_dagegen
+    - ist_spam
+3. Anzeige
+  - Petitionen nach Datum sortiert
+  - Petitionen nach Anzahl Unterstuetzer sortiert
+  - Petitionen nach 
+---------------------------------------------
+THE END
+---------------------------------------------
+

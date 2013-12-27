@@ -1,0 +1,29 @@
+<%
+#
+# https://www.epetition-unzensiert.de - Web-Application to publish censored petitions.
+# Copyright (C) 2013 Jan Kechel
+#  
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+%>
+
+<%
+  content_for(:keywords, "#{@static_site.keywords}, petition, epetition, zensiert, unzensiert, e-petition")
+  content_for(:title, "#{@static_site.title}")
+  content_for(:description, "#{@static_site.description}")
+  @showsidebar = false
+%>
+
+<%= @static_site.html.html_safe %>
+

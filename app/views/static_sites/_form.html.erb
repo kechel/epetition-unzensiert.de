@@ -1,0 +1,60 @@
+<%
+#
+# https://www.epetition-unzensiert.de - Web-Application to publish censored petitions.
+# Copyright (C) 2013 Jan Kechel
+#  
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+%>
+
+<% content_for :extra_js do %>
+  <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+<% end %>
+
+<%= form_for(@static_site) do |f| %>
+  <% if @static_site.errors.any? %>
+    <div id="error_explanation">
+      <h2>CMS-Seite konnte nicht gespeichert werden:</h2>
+
+      <ul>
+      <% @static_site.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <span class="stdlabel150">
+    <%= f.label :url, 'URL' %></span>
+    /<%= f.text_field :url %>.html
+
+  <h2>SEO-Tags</h2>
+  <span class="stdlabel150">
+    <%= f.label :title %></span>
+    <%= f.text_field :title %>
+  <br/>
+  <span class="stdlabel150">
+    <%= f.label :description %></span>
+    <%= f.text_field :description %>
+  <br/>
+  <span class="stdlabel150">
+    <%= f.label :keywords %></span>
+    <%= f.text_field :keywords %>
+  <br/>
+  <h2>HTML Source-Code</h2>
+  <%= f.text_area :html, :class => 'ckeditor' %>
+  <br/>
+  <br/>
+  <%= f.submit 'Speichern', :class => 'button speichern', :style => 'float:right;' %>
+<% end %>

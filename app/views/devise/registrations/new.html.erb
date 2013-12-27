@@ -1,0 +1,49 @@
+<%
+#
+# https://www.epetition-unzensiert.de - Web-Application to publish censored petitions.
+# Copyright (C) 2013 Jan Kechel
+#  
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+%>
+
+<h2>Registrierung</h2>
+Hinweis:
+<ul>
+  <li>Diese Seite ist ein privates Projekt, und steht in keinerlei organisatorischem Zusammenhang mit den offiziellen <a target="_blank" href="https://epetitionen.bundestag.de/">Petitionen des Deutschen Bundestags</a>.</li>
+  <li>Die Registrierung auf epetition-unzensiert.de ist kostenlos und unverbindlich.</li>
+  <li>Wer registriert ist darf Petitionen erstellen und seine Meinung zu anderen Petitionen eintragen.</li>
+  <li>Es besteht kein Anspruch auf die Veröffentlichung von Petitionen oder Daten. (siehe <a href="/community-anti-spam.html" target="_blank">Community Anti-SPAM</a>)</li>
+  <li>epetition-unzensiert.de speichert alle Passwörter verschlüsselt, Ihre E-Mail Adresse aber im Klartext. Diese E-Mail Adresse wird nicht weitergegeben, sondern nur benutzt um alle Unterstützer einer Petition zu informieren sobald eine unterstützte Petition die kritische Masse erreicht hat.</li>
+  <li>epetition-unzensiert.de wird versuchen gleichlautende echte Petitionen beim Bundestag einzureichen sobald eine ggf. zuvor zensierte Petition hier genügend Unterstützer gesammelt hat. Fest Zugesagt werden kann dies jedoch leider nicht.</li>
+  <li>Die hier veröffentlichten Petitionen stehen in keinem Zusammenhang mit der Meinung von epetition-unzensiert.de, sondern nur der jeweilligen Poster &amp; Unterstützer.</li>
+  <li>Wer welche Petition geschrieben hat oder unterstützt wird nach aussen hin anonym gehandhabt. Benutzer haben keine Einsicht wer welche Petition unterstützt oder erstellt hat, ausser den selber erstellten Petition &amp; Meinungen.</li>
+  <li>Selbstverständlich werden alle Ihre Aktionen und Beiträge im Internet detailliert im Zeitverlauf von vielen verschiedenen Geheimdienste wie z.B. NSA, GCHQ, BND und anderen abgegriffen und auf unbestimmte Zeit gespeichert, analysiert, manipuliert und ggf. weiterverkauft oder anderweitig missbraucht.</li>
+</ul>
+<br/>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <span class="stdlabel150"><%= f.label :email, 'E-Mail' %></span> <%= f.email_field :email, :autofocus => true %><br/>
+  <br/>
+  <span class="stdlabel150"><%= f.label :password %></span> <%= f.password_field :password %><br/>
+  <br/>
+  <span class="stdlabel150"><%= f.label :password_confirmation %></span> <%= f.password_field :password_confirmation %><br/>
+  <br/>
+  <%= link_to 'Abbrechen', '/', :class => 'button abbrechen' %>
+  <%= f.submit "Registrierung absenden", :class => 'button speichern', :style => 'float:right;' %>
+<% end %>
+
+<%= render "devise/shared/links" %>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  petition_id: 1
+  datum: 2013-12-26 17:13:32
+  bin_unterstuetzer: false
+  bin_dagegen: false
+  ist_spam: false
+
+two:
+  user_id: 1
+  petition_id: 1
+  datum: 2013-12-26 17:13:32
+  bin_unterstuetzer: false
+  bin_dagegen: false
+  ist_spam: false

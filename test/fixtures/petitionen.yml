@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  datum_erstellt: 2013-12-26 12:15:24
+  datum_zuletzt_bearbeitet: 2013-12-26 12:15:24
+  datum_veroeffentlicht: 2013-12-26 12:15:24
+  ist_zensiert: false
+  datum_zensiert: 2013-12-26 12:15:24
+  datum_entzensiert: 2013-12-26 12:15:24
+  titel: MyString
+  inhalt: MyText
+  titel_zensiert: MyString
+  inhalt_zensiert: MyText
+  anzahl_unterstuetzer_cached: 1
+  anzahl_dagegen_cached: 1
+  anzahl_spam_cached: 1
+
+two:
+  user_id: 1
+  datum_erstellt: 2013-12-26 12:15:24
+  datum_zuletzt_bearbeitet: 2013-12-26 12:15:24
+  datum_veroeffentlicht: 2013-12-26 12:15:24
+  ist_zensiert: false
+  datum_zensiert: 2013-12-26 12:15:24
+  datum_entzensiert: 2013-12-26 12:15:24
+  titel: MyString
+  inhalt: MyText
+  titel_zensiert: MyString
+  inhalt_zensiert: MyText
+  anzahl_unterstuetzer_cached: 1
+  anzahl_dagegen_cached: 1
+  anzahl_spam_cached: 1

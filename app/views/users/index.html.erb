@@ -1,0 +1,47 @@
+<%
+#
+# https://www.epetition-unzensiert.de - Web-Application to publish censored petitions.
+# Copyright (C) 2013 Jan Kechel
+#  
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+%>
+
+<h1>Benutzer</h1>
+<%= form_tag users_path, :method => :get do %>
+  Filter: <%= select_tag :filter, options_for_select({'Admin' => 'admin', 'Spammer' => 'spammer', 'Unconfirmed' => 'unconfirmed', 'Locked' => 'locked' }, @filter), :include_blank => true %>
+  <%= submit_tag 'Los' %>
+<% end %>
+<ul class="highlightonhover trennlinien blocklinks">
+  <li><b>
+    <span style="display:inline-block;width:300px;">Benutzer</span>
+    <span style="display:inline-block;width:100px;text-align:center;">Meinungen</span>
+    <span style="display:inline-block;width:100px;text-align:center;">Petitionen</span>
+    <span style="display:inline-block;width:100px;text-align:center;">Admin</span>
+    <span style="display:inline-block;width:100px;text-align:center;">Gesperrt</span>
+  </b></li>
+
+  <% @users.each do |u| %>
+    <li>
+      <a href="<%= user_path(u) %>">
+        <span style="display:inline-block;width:300px;"><%= u.email %></span>
+        <span style="display:inline-block;width:100px;text-align:center;"><%= u.meinungen.count %></span>
+        <span style="display:inline-block;width:100px;text-align:center;"><%= u.petitionen.count %></span>
+        <span style="display:inline-block;width:100px;text-align:center;"><%= u.is_admin ? 'Ja' : 'Nein' %></span>
+        <span style="display:inline-block;width:100px;text-align:center;"><%= u.is_spammer ? 'Ja' : 'Nein' %></span>
+      </a>
+    </li>
+  <% end %>
+</ul>
+<%= paginate @users %>

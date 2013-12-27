@@ -1,0 +1,89 @@
+<%
+#
+# https://www.epetition-unzensiert.de - Web-Application to publish censored petitions.
+# Copyright (C) 2013 Jan Kechel
+#  
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+%>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <% if content_for?(:title) %>
+    <title><%= yield :title %> | epetition-unsenziert.de</title>
+  <% else %>
+    <title>epetition-unzensiert.de</title>
+  <% end %>
+  <% if content_for?(:keywords) %>
+    <meta name="keywords" content="<%= yield :keywords %>, petition, epetition, zensiert, unzensiert, e-petition"/>
+  <% else %>
+    <meta name="keywords" content="petition, epetition, zensiert, unzensiert, e-petition"/>
+  <% end %>
+  <% if content_for?(:description) %>
+    <meta name="description" content="<%= yield :description %>"/>
+  <% else %>
+    <meta name="description" content="Plattform zur Veröffentlichung zensierter Petitionen."/>
+  <% end %>
+
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <%= yield :extra_js %>
+</head>
+<body>
+  <div class="page">
+      <div style="float:right;">
+        <a href="/" style="display:block;"><img border="0" src="/bilder/epetition-unzensiert-150x61.png" width="150" height="61" alt="epetition-unzensiert.de"/></a>
+      </div>
+      <div class="header">
+          <a href="/">Startseite</a>
+          |
+          <%= link_to 'Alle Petitionen', browser_index_path %>
+          |
+          <% if current_user %>
+            <% if current_user.is_admin %>
+              <%= link_to 'CMS', static_sites_path %>
+              |
+              <%= link_to 'Benutzer', users_path %>
+              |
+            <% end %>
+            <%= link_to 'Meine Petitionen', user_petitionen_path(current_user) %>
+            |
+            <%= link_to 'Meine Meinungen', user_meinungen_path(current_user) %>
+            |
+            <%= link_to 'Profil', edit_user_registration_path %>
+            |
+            <%= link_to 'Abmelden', destroy_user_session_path, :method => :delete %>
+          <% else %>
+            <%= link_to 'Anmelden', new_user_session_path %> 
+            |
+            <%= link_to 'Registrieren', new_user_registration_path %> 
+          <% end %>
+      </div>
+      <div class="content">
+        <% if notice %>
+          <p class="flash notice"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="flash alert"><%= alert %></p>
+        <% end %>
+      <%= yield %>
+      </div>
+      <div class="footer">
+        <a href="/impressum.html">Impressum</a>
+      </div>
+    </div>
+</body>
+</html>

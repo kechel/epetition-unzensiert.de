@@ -1,0 +1,115 @@
+/*
+ *= require_self
+ */
+body { margin:0px; padding:0px; font-family:sans-serif; line-height:1.5em; color:#333; background:#aaa;}
+.page { padding:0px; margin:0px; margin:auto; max-width:1000px; 
+border-width:1px; border-style:solid; border-color:#888;
+background:#fff;
+box-shadow:3px 3px 3px;
+margin-top:5px; margin-bottom:100px;
+}
+
+h1, h2, h3 { line-height:1.2em; color:#222; margin-top:0px; padding-top:0px;}
+
+li, span { vertical-align:top;}
+
+.petitionstitel { font-weight:bold; font-family:courier; }
+.petitionstext { display:inline-block; font-family:courier; 
+border-width:1px; border-style:solid; border-color:#888; padding:5px;
+-moz-border-radius:8px; -khtml-border-radius:8px; -webkit-border-radius:8px; border-radius:8px;
+}
+
+a, a:link, a:visited, a:active, a:hover { color:#000088; padding:5px; 
+    -moz-border-radius:8px; -khtml-border-radius:8px; -webkit-border-radius:8px; border-radius:8px;
+}
+a:hover { background:#ddd;}
+
+.content { padding:50px; padding-top:30px;}
+.header { background:#eee; padding:20px; padding-top:10px; padding-bottom:10px;
+border-width:0px; border-bottom-width:1px; border-style:solid; border-color:#888;
+}
+.header h1 { padding:0px; margin:0px; font-size:16px; }
+.highlight { color:#333; background-color:#f9edbe;   }
+.highlight.border { border-width:1px; border-style:solid; border-color:#225373; }
+
+
+ul.highlightonhover { padding-left:0px; list-style-type:none;}
+.highlightonhover li:hover { background-color:#ddd;}
+.highlightonhover tr:hover { background-color:#ddd;}
+.blocklinks a { display:block; text-decoration:none;}
+ul.trennlinien li, table.trennlinien td { border-style:solid; border-width:0px; border-bottom-width:1px; border-color:#ddd;}
+table.trennlinien { border-collapse:collapse;}
+table.raster td, table.raster th { border-style:solid; border-width:1px; border-color:#ddd;}
+
+.flash { border-style:solid; border-color:#ddd; border-width:2px; padding:20px; margin-top:5px;
+-moz-border-radius:5px; -khtml-border-radius:5px; -webkit-border-radius:5px; border-radius:5px;
+}
+
+.flash.notice { color:#008800; border-color:#008800; background-color:#ddffdd; }
+.flash.warning { color:#ee6c00; border-color:#ff8c00; background-color:#ffffaa; }
+.flash.alert { color:#880000; border-color:#880000; background-color:#ffdddd; font-weight:bold;}
+
+#error_explanation h2 { font-size:16px; color:#880000;}
+#error_explanation { color:#880000; border-color:#880000; background-color:#ffdddd; 
+border-style:solid; border-width:2px; padding:5px; margin-top:5px; margin-bottom:5px;
+-moz-border-radius:5px; -khtml-border-radius:5px; -webkit-border-radius:5px; border-radius:5px;
+}
+.field_with_errors { color:#880000; font-weight:bold; display:inline-block; }
+
+
+.footer { clear:both; color:#888; text-align:center; margin-top:20px; margin-bottom:20px; font-size:0.9em;}
+
+.stdlabel50 { display:inline-block; width:50px; text-align:right; vertical-align:top; }
+.stdlabel75 { display:inline-block; width:75px; text-align:right; vertical-align:top; }
+.stdlabel100 { display:inline-block; width:100px; text-align:right; vertical-align:top; }
+.stdlabel150 { display:inline-block; width:150px; text-align:right; vertical-align:top; }
+.stdlabel200 { display:inline-block; width:200px; text-align:right; vertical-align:top; }
+.stdlabel250 { display:inline-block; width:250px; text-align:right; vertical-align:top; }
+.stdlabel300 { display:inline-block; width:300px; text-align:right; vertical-align:top; }
+.stdlabel350 { display:inline-block; width:350px; text-align:right; vertical-align:top; }
+.stdlabel400 { display:inline-block; width:400px; text-align:right; vertical-align:top; }
+.stdlabel450 { display:inline-block; width:450px; text-align:right; vertical-align:top; }
+.stdlabel500 { display:inline-block; width:500px; text-align:right; vertical-align:top; }
+.stdlabel550 { display:inline-block; width:550px; text-align:right; vertical-align:top; }
+
+.multiline150 { display:inline-block; width:150px;}
+.multiline200 { display:inline-block; width:200px;}
+.multiline250 { display:inline-block; width:250px;}
+.multiline300 { display:inline-block; width:300px;}
+.multiline400 { display:inline-block; width:400px;}
+.multiline500 { display:inline-block; width:500px;}
+.multiline600 { display:inline-block; width:600px;}
+
+span.unterstuetzer { font-weight:bold; color:#008800 !important; }
+span.dagegen { font-weight:bold; color:#880000 !important; }
+span.keine_meinung { font-weight:bold; color:#444 !important; }
+span.spam { font-weight:bold; color:#444 !important; }
+
+.button, .button:link, .button:visited { margin:0px; padding:0px; background-color:#225373; width:auto; color:#FFFFFF; display:inline-block; padding-left:50px; padding-right:50px; height:auto; font-weight:bold; font-size:16px; text-align:center; line-height:30px; -moz-border-radius:5px; -khtml-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; margin-left:20px; margin-right:20px; text-decoration:none; border-width:0px; margin-bottom:5px;}
+.button:hover { background-color:#1b435c; }
+
+.buttongrau, .buttongrau:link, .buttongrau:visited { margin:0px; padding:0px; background-color:#ddd; width:auto; color:#444; display:inline-block; padding-left:50px; padding-right:50px; height:auto; font-weight:bold; font-size:16px; text-align:center; line-height:30px; -moz-border-radius:5px; -khtml-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; margin-left:20px; margin-right:20px; text-decoration:none; border-width:0px;}
+.buttongrau:hover { background-color:#bbb; }
+
+.button.speichern {  }
+.button.bestaetigen { background-color:#008800 !important; }
+.button.abbrechen { background-color:#880000 !important; }
+.button.bearbeiten { background-color:#444 !important; }
+.button.neu { background-color:#444 !important; }
+.button.loeschen { background-color:#880000 !important; }
+.button.zurueck { background-color:#444 !important; }
+.button.unterstuetzer { background-color:#008800 !important; }
+.button.dagegen { background-color:#880000 !important; }
+.button.spam { background-color:#444 !important; }
+
+.button.speichern:hover {  }
+.button.bestaetigen:hover { background-color:#00bb00 !important; }
+.button.abbrechen:hover { background-color:#bb0000 !important; }
+.button.bearbeiten:hover { background-color:#666 !important; }
+.button.neu:hover { background-color:#666 !important; }
+.button.loeschen:hover { background-color:#bb0000 !important; }
+.button.zurueck:hover { background-color:#666 !important; }
+.button.unterstuetzer:hover { background-color:#00bb00 !important; }
+.button.dagegen:hover { background-color:#bb0000 !important; }
+.button.spam:hover { background-color:#666 !important; }
+

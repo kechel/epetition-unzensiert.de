@@ -1,0 +1,48 @@
+<%
+#
+# https://www.epetition-unzensiert.de - Web-Application to publish censored petitions.
+# Copyright (C) 2013 Jan Kechel
+#  
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+%>
+
+<h1>Benutzer <%= @user.email %></h1>
+
+<span class="stdlabel150">Admin?</span> <%= @user.is_admin ? 'Ja' : 'Nein' %><br/>
+<span class="stdlabel150">Spammer?</span> <%= @user.is_spammer ? 'Ja' : 'Nein' %> 
+<% if @user.is_spammer %>
+  <%= link_to 'ist kein Spammer', user_ist_kein_spammer_path(@user), :method => 'patch'%>
+<% else %>
+  <%= link_to 'ist Spammer', user_ist_spammer_path(@user), :method => 'patch' %>
+<% end %>
+<br/>
+<h2><%= @petitionen.total_count %> Petitionen</h2>
+<ul class="highlightonhover blocklinks trennlinien">
+  <% @petitionen.each do |p| %>
+    <%= render :partial => 'petitionen/as_li', :locals => { :foruser => @user, :petition => p } %>
+  <% end %>
+</ul>
+
+<h2><%= @meinungen.total_count %> Meinungen</h2>
+<ul class="highlightonhover blocklinks trennlinien">
+  <% @meinungen.each do |m| %>
+    <%= render :partial => 'meinungen/as_li', :locals => { :m => m } %>
+  <% end %>
+</ul>
+
+
+<br/>
+<br/>
+<%= link_to '&laquo; Benutzer Übersicht'.html_safe, users_path, :class => 'button zurueck' %>

@@ -1,0 +1,31 @@
+<%
+#
+# https://www.epetition-unzensiert.de - Web-Application to publish censored petitions.
+# Copyright (C) 2013 Jan Kechel
+#  
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+%>
+
+<li>
+  <a href="<%= user_petition_path(foruser, petition) %>">
+    <span style="display:inline-block;width:120px;"><%= petition.datum_veroeffentlicht ? date_format(petition.datum_veroeffentlicht) : '-' %></span>
+    <span style="display:inline-block;width:350px;"><%= petition.titel %></span>
+    <span style="display:inline-block;width:80px;text-align:center;"><%= petition.get_anzahl_unterstuetzer %></span>
+    <span style="display:inline-block;width:80px;text-align:center;"><%= petition.get_anzahl_dagegen %></span>
+    <span style="display:inline-block;width:80px;text-align:center;"><%= petition.get_anzahl_spam %></span>
+    <span style="display:inline-block;width:80px;text-align:center;"><%= petition.ist_zensiert ? 'Ja' : 'Nein' %></span>
+  </a>
+</li>
+

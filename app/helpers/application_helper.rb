@@ -16,6 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
+module ApplicationHelper
+
   def newline2br(str)
     if !str
       return ''
